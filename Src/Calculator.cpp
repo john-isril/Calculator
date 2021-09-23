@@ -48,17 +48,6 @@ bool Calculator::validate(const std::string& expression, std::string& errorMessa
 				infixExpression += '+';
 			}
 
-		/*	if (!infixExpression.empty() && infixExpression.back() == '+') {
-
-			}
-			else if (i == 0 || (!infixExpression.empty() && isOperator(infixExpression.back()))) {
-				errorMessage = "Error: missing operand(s)";
-				return false;
-			}
-			else {
-				infixExpression += '+';
-			}*/
-
 			i++;
 		}
 		else if (expression[i] == ' ') {
