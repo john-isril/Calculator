@@ -39,17 +39,26 @@ bool Calculator::validate(const std::string& expression, std::string& errorMessa
 			return false;
 		}
 		// Handles double negatives and evaluates them to be a '+'. (ex: 5--5 == 5+5)
-		else if (i > 0 && (i < expression.length() - 1) && expression[i] == '-' && expression[i + 1] == '-') {
-			if (infixExpression.back() == '+') {
+		else if ((i < expression.length() - 1) && expression[i] == '-' && expression[i + 1] == '-') {
+			if (i == 0 || (!infixExpression.empty() && isOperator(infixExpression.back()) && infixExpression.back() != '+')) {
+				errorMessage = "Error: missing operand(s)";
+				return false;
+			}
+			else if (infixExpression.empty() || infixExpression.back() != '+') {
+				infixExpression += '+';
+			}
+
+		/*	if (!infixExpression.empty() && infixExpression.back() == '+') {
 
 			}
-			else if (isOperator(infixExpression.back())){
+			else if (i == 0 || (!infixExpression.empty() && isOperator(infixExpression.back()))) {
 				errorMessage = "Error: missing operand(s)";
 				return false;
 			}
 			else {
 				infixExpression += '+';
-			}
+			}*/
+
 			i++;
 		}
 		else if (expression[i] == ' ') {
