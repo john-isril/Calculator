@@ -40,7 +40,14 @@ bool Calculator::validate(const std::string& expression, std::string& errorMessa
 		}
 		// Handles double negatives and evaluates them to be a '+'. (ex: 5--5 == 5+5)
 		else if (i > 0 && (i < expression.length() - 1) && expression[i] == '-' && expression[i + 1] == '-') {
-			if (infixExpression.back() != '+') {
+			if (infixExpression.back() == '+') {
+
+			}
+			else if (isOperator(infixExpression.back())){
+				errorMessage = "Error: missing operand(s)";
+				return false;
+			}
+			else {
 				infixExpression += '+';
 			}
 			i++;

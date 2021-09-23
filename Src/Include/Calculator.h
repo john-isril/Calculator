@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include <math.h>
-//#include <ctype.h>
 #include <sstream>
 #include "Include\Stack.h"
 
