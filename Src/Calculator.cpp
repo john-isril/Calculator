@@ -4,6 +4,10 @@ Calculator::Calculator()
 	: infixExpression{}, postfixExpression{}, expressionStack{}, evaluationStack{} {}
 
 bool Calculator::setExpression(std::string& userExpression) {
+	if (userExpression.empty()) {
+		return false;
+	}
+
 	std::string errorMessage{};
 
 	infixExpression.clear();
