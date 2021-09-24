@@ -59,7 +59,11 @@ bool Calculator::validate(const std::string& expression, std::string& errorMessa
 		}
 		// Checks if parenthesis are properly balanced.
 		else if (expression[i] == '(') {
+			if (i > 0 && infixExpression.back() == '-') {
+				infixExpression += ("1*");
+			}
 			expressionStack.push(expression[i]);
+			infixExpression += expression[i];
 		}
 		else if (expression[i] == ')') {
 			if (expressionStack.isEmpty()) {
@@ -68,6 +72,7 @@ bool Calculator::validate(const std::string& expression, std::string& errorMessa
 				return false;
 			}
 			else {
+				infixExpression += expression[i];
 				expressionStack.pop();
 			}
 		}
@@ -104,7 +109,9 @@ void Calculator::convertInfixToPostfix() {
 		}
 		else if (expressionStack.isEmpty() || (outStackPrecedence(infixExpression[i]) > inStackPrecedence(expressionStack.top()))) {
 			expressionStack.push(infixExpression[i]);
-			postfixExpression += ' ';
+			if (infixExpression[i] != '(') {
+				postfixExpression += ' ';
+			}
 		}
 		else {
 			postfixExpression += ' ';
