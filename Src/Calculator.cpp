@@ -101,7 +101,7 @@ void Calculator::convertInfixToPostfix() {
 	postfixExpression += infixExpression[0];
 
 	for (size_t i{ 1 }; i < infixExpression.size(); i++) {
-		if ((infixExpression[i] == '-' && isOperator(infixExpression[i - 1])) || infixExpression[i] == '.' || std::isdigit(infixExpression[i])) {
+		if ((infixExpression[i] == '-' && (isOperator(infixExpression[i - 1]) || infixExpression[i - 1] == '(')) || infixExpression[i] == '.' || std::isdigit(infixExpression[i])) {
 			postfixExpression += infixExpression[i];
 		}
 		else if (infixExpression[i] == ')' && expressionStack.top() == '(') {
