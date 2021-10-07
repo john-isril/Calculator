@@ -33,7 +33,7 @@ bool Calculator::validate(const std::string& expression, std::string& errorMessa
 
 	for (size_t i{ 0 }; i < expression.length(); i++) {
 		// Checks that operators have operands on both sides, unless its a '-' because '-' can be for negation.
-		if (i > 0 && isOperator(expression[i]) && expression[i] != '-' && isOperator(infixExpression.back())) {
+		if (i > 0 && (!isdigit(expression[i]) || expression[i] == '.') && expression[i] != '-' && isOperator(infixExpression.back())) {
 			errorMessage = "Error: missing operand(s)";
 			return false;
 		}
@@ -98,9 +98,9 @@ bool Calculator::validate(const std::string& expression, std::string& errorMessa
 
 void Calculator::convertInfixToPostfix() {
 	postfixExpression.clear();
-	postfixExpression += infixExpression[0];
+	//postfixExpression += infixExpression[0];
 
-	for (size_t i{ 1 }; i < infixExpression.size(); i++) {
+	for (size_t i{ 0 }; i < infixExpression.size(); i++) {
 		if ((infixExpression[i] == '-' && (isOperator(infixExpression[i - 1]) || infixExpression[i - 1] == '(')) || infixExpression[i] == '.' || std::isdigit(infixExpression[i])) {
 			postfixExpression += infixExpression[i];
 		}
