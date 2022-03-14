@@ -13,5 +13,4 @@ Hello! This is a basic calculator console application that helps the user solve 
                        4. Rejects a floating point value that does not have values on both sides of the decimal point (ex: 7.).
 
 ### Example:
-![image](https://user-images.githubusercontent.com/74218894/158117328-9d83ab2a-13ed-4098-aff7-f20e9b4798f7.png)
-
+![image](https://user-images.githubusercontent.com/74218894/158118209-44d90590-4429-492a-b828-a0bc31d09213.png)
